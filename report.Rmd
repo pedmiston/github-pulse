@@ -14,7 +14,12 @@ data("activity")
 
 library(ggplot2)
 
-ggplot(activity, aes(x = created_at)) +
-  geom_histogram(aes(color = type)) +
-  facet_wrap("type")
+event_types <- activity %>%
+  count(type) %>%
+  mutate(rank = rank(-n, ties.method = "first"))
+
+ggplot(event_types, aes(x = rank, y = n)) +
+  geom_bar(aes(fill = rank), stat = "identity") +
+  geom_text(aes(label = type), angle = 45, hjust = 0, vjust = -0.5) +
+  coord_cartesian(ylim = c(0, 6200))
 ```
