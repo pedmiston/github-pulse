@@ -1,0 +1,6 @@
+# os
+.DS_Store
+
+# data
+data-raw/*.csv
+data/*.rda
