@@ -1,4 +1,6 @@
 data-raw/*.csv
+data/*.rda
+
 .Rproj.user
 .Rhistory
 .RData
