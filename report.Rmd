@@ -7,11 +7,14 @@ output:
 ---
 
 ```{r setup}
-library(devtools)
-load_package("githubarchive")
-data("r_activity")
+library(dplyr)
+
+devtools::load_all("githubarchive")
+data("activity")
 
 library(ggplot2)
-ggplot(r_activity, aes(x = day, y = size)) +
-    geom_bar(stat = "summary", y = "sum")
+
+ggplot(activity, aes(x = created_at)) +
+  geom_histogram(aes(color = type)) +
+  facet_wrap("type")
 ```

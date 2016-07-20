@@ -20,8 +20,9 @@ def get_data(ctx):
     blob = gzip.decompress(response.content).decode('utf-8')
     activity = pandas.DataFrame({'events': blob.splitlines()})
 
-    activity['data'] = activity.events.apply(json.loads)
-    activity['type'] = activity.data.apply(lambda x: x['type'])
+    data = activity.events.apply(json.loads)
+    activity['type'] = data.apply(lambda x: x['type'])
+    activity['created_at'] = data.apply(lambda x: x['created_at'])
 
     activity.to_csv(dst.format(pkg=pkg, key=key), index=False)
 
