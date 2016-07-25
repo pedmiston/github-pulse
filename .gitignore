@@ -6,3 +6,6 @@ __pycache__/
 
 # R
 .Rproj.user
+
+# reproducible
+*.html
